@@ -1,10 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://nsewj7opiwoh"]
 
-[ext_resource type="Script" uid="uid://bh8ggd1o5vdax" path="res://addons/MultiplayCore/MPBase.gd" id="1_63tst"]
-[ext_resource type="Script" uid="uid://beh0oul53f5k6" path="res://addons/MultiplayCore/MultiPlay.gd" id="2_3ohsu"]
-[ext_resource type="Script" uid="uid://puh124knur34" path="res://addons/MultiplayCore/net_protocols/ENetProtocol.gd" id="3_5h46i"]
-[ext_resource type="Script" uid="uid://cap5uq2iv8n2x" path="res://player.gd" id="4_gyuag"]
-[ext_resource type="Texture2D" uid="uid://cqdbwn6h2trj2" path="res://icon.svg" id="5_ymuiv"]
+[ext_resource type="Script" uid="uid://djfq3cfx36buy" path="res://addons/MultiplayCore/MPBase.gd" id="2_n1gxf"]
+[ext_resource type="Script" uid="uid://bwuv2f77qqrno" path="res://addons/MultiplayCore/MultiPlay.gd" id="3_63tst"]
+[ext_resource type="Script" uid="uid://dheyxq28xrdvv" path="res://addons/MultiplayCore/net_protocols/ENetProtocol.gd" id="4_3ohsu"]
+[ext_resource type="Texture2D" uid="uid://bqptgywr4xw5x" path="res://icon.svg" id="5_ymuiv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6r6c"]
 radius = 11.0
@@ -28,23 +27,12 @@ animations = [{
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d21ai"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5h46i"]
+
 [node name="Node2D" type="Node2D"]
-
-[node name="MPBase" type="Node" parent="."]
-script = ExtResource("1_63tst")
-metadata/_custom_type_script = "uid://bh8ggd1o5vdax"
-
-[node name="MultiPlayCore" type="Node" parent="MPBase"]
-script = ExtResource("2_3ohsu")
-metadata/_custom_type_script = "uid://beh0oul53f5k6"
-
-[node name="ENetProtocol" type="Node" parent="MPBase/MultiPlayCore"]
-script = ExtResource("3_5h46i")
-metadata/_custom_type_script = "uid://puh124knur34"
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(196, 108)
-script = ExtResource("4_gyuag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 1)
@@ -64,3 +52,18 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="MPBase" type="Node" parent="."]
+script = ExtResource("2_n1gxf")
+metadata/_custom_type_script = "uid://djfq3cfx36buy"
+
+[node name="MultiPlayCore" type="Node" parent="MPBase"]
+script = ExtResource("3_63tst")
+metadata/_custom_type_script = "uid://bwuv2f77qqrno"
+
+[node name="ENetProtocol" type="Node" parent="MPBase/MultiPlayCore"]
+script = ExtResource("4_3ohsu")
+metadata/_custom_type_script = "uid://dheyxq28xrdvv"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_5h46i")
