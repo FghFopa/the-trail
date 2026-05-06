@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://nsewj7opiwoh"]
+
+[ext_resource type="Script" uid="uid://bh8ggd1o5vdax" path="res://addons/MultiplayCore/MPBase.gd" id="1_1gg6n"]
+[ext_resource type="Script" uid="uid://beh0oul53f5k6" path="res://addons/MultiplayCore/MultiPlay.gd" id="2_x4164"]
+[ext_resource type="Script" uid="uid://puh124knur34" path="res://addons/MultiplayCore/net_protocols/ENetProtocol.gd" id="3_8ldoj"]
+[ext_resource type="Script" uid="uid://dabq3e2172sqv" path="res://player.gd" id="4_ein8w"]
+[ext_resource type="Texture2D" uid="uid://cqdbwn6h2trj2" path="res://icon.svg" id="5_gm5bj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6r6c"]
+radius = 11.0
+height = 40.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdubu"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gm5bj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d21ai"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MPBase" type="Node" parent="."]
+script = ExtResource("1_1gg6n")
+metadata/_custom_type_script = "uid://bh8ggd1o5vdax"
+
+[node name="MultiPlayCore" type="Node" parent="MPBase"]
+script = ExtResource("2_x4164")
+metadata/_custom_type_script = "uid://beh0oul53f5k6"
+
+[node name="ENetProtocol" type="Node" parent="MPBase/MultiPlayCore"]
+script = ExtResource("3_8ldoj")
+metadata/_custom_type_script = "uid://puh124knur34"
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(196, 108)
+script = ExtResource("4_ein8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_q6r6c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(-1, -1)
+scale = Vector2(0.476562, 0.4375)
+sprite_frames = SubResource("SpriteFrames_kdubu")
+animation = &"idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_d21ai")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
