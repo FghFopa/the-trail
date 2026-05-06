@@ -1,7 +1,7 @@
 extends Control
 
 # Укажите путь к сцене с вашим уровнем
-@export var game_scene_path : String = "res://scenes/lobby.tscn"
+@export var game_scene_path : String = "res://levels/lobby.tscn"
 
 func _on_start_button_pressed():
 	# Переход к игровой сцене

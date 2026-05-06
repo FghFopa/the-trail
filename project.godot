@@ -18,13 +18,14 @@ run/main_scene="uid://crdvqlv3uyua3"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[autoload]
+[editor]
 
-MPIO="*res://addons/MultiplayCore/MPIO.gd"
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/MultiplayCore/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotSavesAddon/plugin.cfg")
 
 [input_devices]
 
